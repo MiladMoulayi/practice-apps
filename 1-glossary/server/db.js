@@ -21,6 +21,10 @@ const EntrySchema = new Schema({
   definition: {
     type: String,
     required: true
+  },
+  partOfSpeech: {
+    type: String,
+    required: true
   }
 });
 

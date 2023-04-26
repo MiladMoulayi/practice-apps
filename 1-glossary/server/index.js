@@ -19,7 +19,8 @@ app.get('/glossary', async (req, res) => {
 app.post('/glossary/new', (req, res) => {
   const entry = new Entry({
     word: req.body.word,
-    definition: req.body.definition
+    definition: req.body.definition,
+    partOfSpeech: req.body.partOfSpeech
   });
 
   entry.save();
@@ -37,7 +38,8 @@ app.put('/glossary/edit/:id', async (req, res) => {
   const entry = await Entry.findById(req.params.id);
 
   entry.word = req.body.word;
-  entry.definition = req.body.def;
+  entry.definition = req.body.definition;
+  entry.partOfSpeech = req.body.partOfSpeech
 
   entry.save();
 
