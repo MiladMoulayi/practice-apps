@@ -19,7 +19,7 @@ app.get('/glossary', async (req, res) => {
 app.post('/glossary/new', (req, res) => {
   const entry = new Entry({
     word: req.body.word,
-    definition: req.body.def
+    definition: req.body.definition
   });
 
   entry.save();
