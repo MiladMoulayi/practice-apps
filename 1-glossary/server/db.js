@@ -25,6 +25,10 @@ const EntrySchema = new Schema({
   partOfSpeech: {
     type: String,
     required: false
+  },
+  source: {
+    type: String,
+    required: false
   }
 });
 
