@@ -1,9 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import 'regenerator-runtime/runtime';
-import Button from '@mui/material/Button';
-import {deleteEntry} from '../helpers';
-
+import { useState } from 'react';
 
 const API_BASE = "http://localhost:3000";
 

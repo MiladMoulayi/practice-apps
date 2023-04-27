@@ -1,15 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import 'regenerator-runtime/runtime';
-import Button from '@mui/material/Button';
-import {addEntry} from '../helpers';
+import { useState } from 'react';
 
 const API_BASE = "http://localhost:3000";
 
 const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
   const [newWord, setNewWord] = useState("");
   const [newDef, setNewDef] = useState("");
-  // const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
+  const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
   const [buttonClicked, setButtonClicked] = useState(false);
 
   const addEntry = async () => {
@@ -21,7 +18,7 @@ const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
       body: JSON.stringify({
         word: newWord,
         definition: newDef,
-        // partOfSpeech: newPartOfSpeech
+        partOfSpeech: newPartOfSpeech
       })
     }).then(res => res.json());
 
@@ -31,7 +28,7 @@ const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
     setPopupActive(false);
     setNewWord("");
     setNewDef("");
-    // setNewPartOfSpeech("");
+    setNewPartOfSpeech("");
   }
 
     if (popupActive) {
@@ -44,15 +41,21 @@ const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
             <input
               type="text"
               className="add-word-input"
-              placeholder="New word..."
+              placeholder="Word..."
               onChange={e => setNewWord(e.target.value)}
               value={newWord} />
             <input
               type="text"
               className="add-def-input"
-              placeholder="New definition..."
+              placeholder="Definition..."
               onChange={e => setNewDef(e.target.value)}
               value={newDef} />
+            <input
+              type="text"
+              className="add-pos-input"
+              placeholder="Part of speech..."
+              onChange={e => setNewPartOfSpeech(e.target.value)}
+              value={newPartOfSpeech} />
             <div className="button" onClick={(addEntry)}>Add entry</div>
           </div>
         </div>

@@ -155,7 +155,7 @@ h5 {
 	text-transform: uppercase;
 }
 
-.add-word-input {
+.add-word-input, .add-def-input, .add-pos-input {
 	appearance: none;
 	outline: none;
 	border: none;
@@ -166,18 +166,6 @@ h5 {
 	box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
 	font-size: 20px;
   margin-bottom:12px;
-}
-
-.add-def-input {
-	appearance: none;
-	outline: none;
-	border: none;
-	background-color: #FFF;
-	padding: 16px;
-	border-radius: 16px;
-	width: 100%;
-	box-shadow: 0px 2px 24px rgba(0, 0, 0, 0.2);
-	font-size: 20px;
 }
 
 .button {

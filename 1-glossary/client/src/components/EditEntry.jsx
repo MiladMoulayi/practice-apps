@@ -1,14 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import 'regenerator-runtime/runtime';
-import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 const API_BASE = "http://localhost:3000";
 
 const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
   const [newWord, setNewWord] = useState("");
   const [newDef, setNewDef] = useState("");
-  // const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
+  const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
 
   const findAndReplace = (list, data, id) => {
     let updated = [];
@@ -17,7 +15,8 @@ const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
         updated.push({
           "_id": id,
           "word": newWord,
-          "definition": newDef
+          "definition": newDef,
+          "partOfSpeech": newPartOfSpeech
         });
       } else {
         updated.push(list[i]);
@@ -34,7 +33,8 @@ const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
       },
       body: JSON.stringify({
         word: newWord,
-        definition: newDef
+        definition: newDef,
+        partOfSpeech: newPartOfSpeech
       })
     }).then(res => res.json());
 
@@ -42,7 +42,7 @@ const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
     setEditEntryId("");
     setNewWord("");
     setNewDef("");
-    // setNewPartOfSpeech("");
+    setNewPartOfSpeech("");
   }
 
 
@@ -55,15 +55,21 @@ const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
         <input
           type="text"
           className="add-word-input"
-          placeholder="New word..."
+          placeholder="Word..."
           onChange={e => setNewWord(e.target.value)}
           value={newWord} />
         <input
           type="text"
           className="add-def-input"
-          placeholder="New definition..."
+          placeholder="Definition..."
           onChange={e => setNewDef(e.target.value)}
           value={newDef} />
+        <input
+          type="text"
+          className="add-pos-input"
+          placeholder="Part of speech..."
+          onChange={e => setNewPartOfSpeech(e.target.value)}
+          value={newPartOfSpeech} />
         <div className="button" onClick={() => editEntry(editEntryId)}>Edit entry</div>
       </div>
     </div>
