@@ -4,7 +4,7 @@ import { useState } from 'react';
 const API_BASE = "http://localhost:3000";
 
 
-const Entries = ({entries, setEntries, setEditEntryId}) => {
+const Entries = ({entries, setEntries, setEditEntryId, filteredEntries, setFilteredEntries}) => {
 
   const deleteEntry = async id => {
     const data = await fetch(API_BASE + "/glossary/delete/" + id, { method: "DELETE" })
@@ -15,7 +15,7 @@ const Entries = ({entries, setEntries, setEditEntryId}) => {
 
   return (
     <div className="Entries">
-    {entries.map(entry => (
+    {filteredEntries.map(entry => (
       <div className="entry" key={entry._id}>
         <h4 className="word">{entry.word}</h4>
         <div className="definition"><h5>Definition:</h5>{entry.definition}</div>

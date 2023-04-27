@@ -232,3 +232,31 @@ h5 {
 a {
   color: hotpink;
 }
+
+.searchInput {
+  margin-top: 30px;
+  margin-bottom:30px;
+  display: flex;
+  margin-left: 12pt;
+}
+
+.Search input {
+  background-color: white;
+  border: 0;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 18px;
+  padding: 15px;
+  height: 10px;
+  width: 300px;
+}
+
+.searchIcon {
+  height: 30px;
+  width: 50px;
+  background-color: white;
+	color:#202B3E;
+  display: grid;
+  place-items: center;
+}
