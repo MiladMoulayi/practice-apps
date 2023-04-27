@@ -37,6 +37,9 @@ const App = () => {
 
         <div className="Dictionary"><Dictionary entries={entries} setEntries={setEntries} dictActive={dictActive} setDictActive={setDictActive}/></div>
 
+        <a className ="surprise-me" target="_blank" href="https://en.wiktionary.org/wiki/Special:Random">Surprise Me</a>
+
+
     </div>
   )
 }

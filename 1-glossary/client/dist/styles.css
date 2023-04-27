@@ -69,6 +69,8 @@ h5 {
 
 .entry .definition {
 	font-size: 14pt;
+	max-width: 620px;
+	margin-bottom: 12px;
 }
 
 .entry .delete-entry {
@@ -111,6 +113,7 @@ h5 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 
 	width: 64px;
 	height: 64px;
@@ -130,6 +133,7 @@ h5 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 
 	width: 64px;
 	height: 64px;
@@ -140,6 +144,27 @@ h5 {
 	background-color: var(--primary);
 	background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
 	cursor: pointer;
+}
+
+.surprise-me {
+	position: fixed;
+	bottom: 32px;
+	left: 128px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	width: 64px;
+	height: 64px;
+	border-radius: 999px;
+	font-size: 14px;
+	font-weight: 900;
+	color: var(--light);
+	background-color: var(--primary);
+	background-image: linear-gradient(to bottom right, var(--primary), var(--secondary));
+	cursor: pointer;
+
 }
 
 .popup {
