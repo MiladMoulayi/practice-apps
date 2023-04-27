@@ -24,7 +24,7 @@ const EntrySchema = new Schema({
   },
   partOfSpeech: {
     type: String,
-    required: true
+    required: false
   }
 });
 

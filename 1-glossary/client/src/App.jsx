@@ -1,21 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import 'regenerator-runtime/runtime';
-import Button from '@mui/material/Button';
-import Entries from './components/Entries';
-import AddEntry from './components/AddEntry';
-import EditEntry from './components/EditEntry';
+import Entries from './components/Entries.jsx';
+import AddEntry from './components/AddEntry.jsx';
+import EditEntry from './components/EditEntry.jsx';
 
 const API_BASE = "http://localhost:3000";
 
 const App = () => {
   const [entries, setEntries] = useState([]);
   const [popupActive, setPopupActive] = useState(false);
-  const [newWord, setNewWord] = useState("");
-  const [newDef, setNewDef] = useState("");
-  const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
   const [editEntryId, setEditEntryId] = useState("");
-  const [buttonClicked, setButtonClicked] = useState(false);
 
   useEffect(() => {
     GetEntries();
@@ -31,26 +26,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="Entries"><Entries entries={entries} setEditEntryId={setEditEntryId}/></div>
+      <div className="Entries"><Entries entries={entries} setEntries={setEntries} setEditEntryId={setEditEntryId}/></div>
 
       <div className="addPopup" onClick={() => setPopupActive(true)}>+</div>
 
-      {popupActive ? (
-        <AddEntry
-          setNewWord={setNewWord}
-          setNewDef={setNewDef}
-          setNewPartOfSpeech={setNewPartOfSpeech}
-          setPopupActive={setPopupActive}/>
-        ) : ''}
+        <div className="add-entry"><AddEntry entries={entries} setEntries={setEntries} popupActive={popupActive} setPopupActive={setPopupActive}/></div>
 
-      {editEntryId ? (
-        <EditEntry
-          setNewWord={setNewWord}
-          setNewDef={setNewDef}
-          setNewPartOfSpeech={setNewPartOfSpeech}
-          editEntryId={editEntryId}
-          setEditEntryId={setEditEntryId}/>
-        ) : ''}
+        <div className="edit-entry"><EditEntry entries={entries} setEntries={setEntries} editEntryId={editEntryId} setEditEntryId={setEditEntryId}/></div>
 
     </div>
   )

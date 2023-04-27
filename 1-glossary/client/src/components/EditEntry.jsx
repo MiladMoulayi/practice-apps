@@ -2,33 +2,75 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import 'regenerator-runtime/runtime';
 import Button from '@mui/material/Button';
-import {editEntry, findAndReplace} from '../helpers';
 
-const EditEntry = (setNewWord, setNewDef, setNewPartOfSpeech, editEntryId, setEditEntryId) => {
+const API_BASE = "http://localhost:3000";
 
-  return (
+const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
+  const [newWord, setNewWord] = useState("");
+  const [newDef, setNewDef] = useState("");
+  // const [newPartOfSpeech, setNewPartOfSpeech] = useState("");
 
-    <div className="popup">
-    <div className="closePopup" onClick={() => setEditEntryId("")}>x</div>
-    <div className="content">
-      <h3>editEntryId: {editEntryId}</h3>
-      <input
-        type="text"
-        className="add-word-input"
-        placeholder="New word..."
-        onChange={e => setNewWord(e.target.value)}
-        value={newWord} />
-      <input
-        type="text"
-        className="add-def-input"
-        placeholder="New definition..."
-        onChange={e => setNewDef(e.target.value)}
-        value={newDef} />
-      <div className="button" onClick={() => editEntry(editEntryId)}>Edit entry</div>
+  const findAndReplace = (list, data, id) => {
+    let updated = [];
+    for (let i = 0; i < list.length; i++) {
+      if (list[i]._id === data._id) {
+        updated.push({
+          "_id": id,
+          "word": newWord,
+          "definition": newDef
+        });
+      } else {
+        updated.push(list[i]);
+      }
+    }
+    return updated;
+  }
+
+  const editEntry = async id => {
+    const data = await fetch(API_BASE + "/glossary/edit/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        word: newWord,
+        definition: newDef
+      })
+    }).then(res => res.json());
+
+    setEntries(findAndReplace(entries, data, id));
+    setEditEntryId("");
+    setNewWord("");
+    setNewDef("");
+    // setNewPartOfSpeech("");
+  }
+
+
+  if (editEntryId) {
+
+    return (
+      <div className="popup">
+      <div className="closePopup" onClick={() => setEditEntryId("")}>x</div>
+      <div className="content">
+        <input
+          type="text"
+          className="add-word-input"
+          placeholder="New word..."
+          onChange={e => setNewWord(e.target.value)}
+          value={newWord} />
+        <input
+          type="text"
+          className="add-def-input"
+          placeholder="New definition..."
+          onChange={e => setNewDef(e.target.value)}
+          value={newDef} />
+        <div className="button" onClick={() => editEntry(editEntryId)}>Edit entry</div>
+      </div>
     </div>
-  </div>
-
-  )
+    )
+  } else {
+    return "";
+  }
 }
 
 export default EditEntry;
