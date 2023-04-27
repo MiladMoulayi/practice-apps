@@ -20,7 +20,8 @@ app.post('/glossary/new', (req, res) => {
   const entry = new Entry({
     word: req.body.word,
     definition: req.body.definition,
-    partOfSpeech: req.body.partOfSpeech
+    partOfSpeech: req.body.partOfSpeech,
+    source: req.body.source
   });
 
   entry.save();

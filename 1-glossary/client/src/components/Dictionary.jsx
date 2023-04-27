@@ -20,8 +20,6 @@ const Dictionary = ({entries, setEntries, dictActive, setDictActive}) => {
       .then(res => res.json())
       .catch(err => console.error("Error: ", err));
 
-    console.log(data);
-
     setNewDef(data[0].meanings[0].definitions[0].definition);
     setNewPartOfSpeech(data[0].meanings[0].partOfSpeech);
     setSourceURL(data[0].sourceUrls[0]);
@@ -40,8 +38,6 @@ const Dictionary = ({entries, setEntries, dictActive, setDictActive}) => {
         source: sourceURL
       })
     }).then(res => res.json());
-
-    console.log('entries: ', entries)
 
     setEntries([...entries, data]);
     setDictActive(false);

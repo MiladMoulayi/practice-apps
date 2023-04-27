@@ -20,6 +20,7 @@ const Entries = ({entries, setEntries, setEditEntryId}) => {
         <h4 className="word">{entry.word}</h4>
         <div className="definition"><h5>Definition:</h5>{entry.definition}</div>
         <div className="definition"><h5>Part of Speech:</h5>{entry.partOfSpeech}</div>
+        <div className="source"><a href={entry.source || "https://en.wiktionary.org/wiki/" + entry.word} target="_blank">Look up on Wiktionary</a></div>
         <div className="edit-entry" onClick={() => setEditEntryId(entry._id)}>Edit</div>
         <div className="delete-entry" onClick={() => deleteEntry(entry._id)}>Del</div>
       </div>

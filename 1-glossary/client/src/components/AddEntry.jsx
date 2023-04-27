@@ -22,8 +22,6 @@ const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
       })
     }).then(res => res.json());
 
-    console.log('entries: ', entries)
-
     setEntries([...entries, data]);
     setPopupActive(false);
     setNewWord("");

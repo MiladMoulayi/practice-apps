@@ -203,3 +203,7 @@ h5 {
 .partsOfSpeech {
   align-content: center;
 }
+
+a {
+  color: hotpink;
+}
