@@ -19,13 +19,31 @@ app.use(logger);
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
-/**** 
- * 
- * 
- * Other routes here....
- *
- * 
- */
+app.use(express.json());
+
+app.get('/greeting', (req, res) => {
+  res.json({ greeting: 'Hi there!'})
+})
+
+app.get('/checkout', (req, res) => {
+  const sessionId = req.session_id;
+  res.json({sessionId})
+})
+
+app.post('/users/form1', (req, res) => {
+  const q = `INSERT INTO users (first_name, last_name, email, password) VALUES ("${req.body.first_name}", "${req.body.last_name}", "${req.body.email}", "${req.body.password}");`
+
+  db.query(q, (err, results) => {
+    if (err) {
+      console.error("Error posting data!");
+      return;
+    }
+    res.json(req.body);
+
+  })
+
+})
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
