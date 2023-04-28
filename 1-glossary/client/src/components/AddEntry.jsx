@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-
-const API_BASE = "http://localhost:3000";
+import { API_BASE } from '../App.jsx'
 
 const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
   const [newWord, setNewWord] = useState("");
@@ -63,4 +62,4 @@ const AddEntry = ({entries, setEntries, popupActive, setPopupActive}) => {
     }
 }
 
-export default AddEntry;
+export {AddEntry};

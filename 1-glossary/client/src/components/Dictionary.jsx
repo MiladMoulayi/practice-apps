@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-
-const API_BASE = "http://localhost:3000";
+import { API_BASE } from '../App.jsx'
 
 const Dictionary = ({entries, setEntries, dictActive, setDictActive}) => {
   const [newWord, setNewWord] = useState("");
@@ -72,4 +71,4 @@ const Dictionary = ({entries, setEntries, dictActive, setDictActive}) => {
 
 
 
-export default Dictionary;
+export {Dictionary};

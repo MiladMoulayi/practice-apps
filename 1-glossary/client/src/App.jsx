@@ -1,11 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import 'regenerator-runtime/runtime';
-import Entries from './components/Entries.jsx';
-import AddEntry from './components/AddEntry.jsx';
-import EditEntry from './components/EditEntry.jsx';
-import Dictionary from './components/Dictionary.jsx';
-import Search from './components/Search.jsx'
+import {Entries, AddEntry, EditEntry, Dictionary, Search, Random} from './index.jsx';
 
 const API_BASE = "http://localhost:3000";
 
@@ -52,4 +48,4 @@ const App = () => {
 }
 
 
-export default App;
+export {App, API_BASE}

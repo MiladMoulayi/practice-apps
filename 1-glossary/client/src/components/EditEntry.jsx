@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-
-const API_BASE = "http://localhost:3000";
+import { API_BASE } from '../App.jsx'
 
 const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
   const [newWord, setNewWord] = useState("");
@@ -79,4 +78,4 @@ const EditEntry = ({entries, setEntries, editEntryId, setEditEntryId}) => {
   }
 }
 
-export default EditEntry;
+export {EditEntry};

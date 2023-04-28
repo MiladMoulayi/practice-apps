@@ -38,4 +38,4 @@ const Search = ({entries, filteredEntries, setFilteredEntries}) => {
   );
 }
 
-export default Search;
+export {Search};

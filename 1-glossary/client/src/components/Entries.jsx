@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-
-const API_BASE = "http://localhost:3000";
-
+import { API_BASE } from '../App.jsx'
 
 const Entries = ({entries, setEntries, setEditEntryId, filteredEntries, setFilteredEntries}) => {
 
@@ -29,4 +27,4 @@ const Entries = ({entries, setEntries, setEditEntryId, filteredEntries, setFilte
   )
 }
 
-export default Entries;
+export {Entries};
