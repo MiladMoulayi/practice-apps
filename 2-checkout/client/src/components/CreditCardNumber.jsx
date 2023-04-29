@@ -20,7 +20,7 @@ const CreditCardNumber = () => {
   }
 
   return (
-    <input name="credit_card_num" placeholder="" onChange={onChange} value={number} maxLength={19}></input>
+    <input name="credit_card_num" placeholder="" onChange={onChange} value={number} maxLength={19} required></input>
   )
 }
 

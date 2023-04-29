@@ -18,7 +18,7 @@ const PhoneNumber = () => {
   }
 
   return (
-    <input name="phone_number" placeholder="555-424-3636..." onChange={onChange} value={number} maxLength={12}></input>
+    <input name="phone_number" placeholder="555-424-3636..." onChange={onChange} value={number} maxLength={12} required></input>
   )
 }
 

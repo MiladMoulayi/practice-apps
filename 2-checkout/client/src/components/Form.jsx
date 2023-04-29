@@ -67,7 +67,15 @@ const Form = (props) => {
   const userLoop = () => {
     let res = [];
     for (let key in user) {
-      res.push(<div key={key}>{key}: {user[key]}</div>)
+      if (key === "password") {
+        let mask = "";
+        for (let i of user[key]) {
+          mask += "•"
+        }
+        res.push(<div key={key}>{key}: {mask}</div>)
+      } else {
+        res.push(<div key={key}>{key}: {user[key]}</div>)
+      }
     }
     return res;
   }
@@ -75,16 +83,16 @@ const Form = (props) => {
   if (formState1) {
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>First Name: <input name="first_name" placeholder="John..."></input></label>
+        <label>First Name: <input name="first_name" placeholder="John..." required></input></label>
         <br />
         <br />
-        <label>Last Name: <input name="last_name" placeholder="Wick..."></input></label>
+        <label>Last Name: <input name="last_name" placeholder="Wick..." required></input></label>
         <br />
         <br />
-        <label>Email: <input name="email" placeholder="bulletTime@node.js..."></input></label>
+        <label>Email: <input name="email" placeholder="bulletTime@node.js..." required></input></label>
         <br />
         <br />
-        <label>Password: <input name="password" placeholder="password123..."></input></label>
+        <label>Password: <input type="password" name="password" required></input></label>
 
         <button type="reset">Reset form</button>
         <button type="submit">Next</button>
@@ -94,19 +102,19 @@ const Form = (props) => {
   } else if (formState2) {
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>Address Line 1: <input name="address_line_one" placeholder="123 Main St..."></input></label>
+        <label>Address Line 1: <input name="address_line_one" placeholder="123 Main St..." required></input></label>
         <br />
         <br />
         <label>Address Line 2: <input name="address_line_two" placeholder="Apt. #1..."></input></label>
         <br />
         <br />
-        <label>City: <input name="city" placeholder="Los Angeles..."></input></label>
+        <label>City: <input name="city" placeholder="Los Angeles..." required></input></label>
         <br />
         <br />
-        <label>State: <input name="state" placeholder="CA..."></input></label>
+        <label>State: <input name="state" placeholder="CA..." required></input></label>
         <br />
         <br />
-        <label>ZIP Code: <input name="zip_code" placeholder="90210..."></input></label>
+        <label>ZIP Code: <input name="zip_code" placeholder="90210..." required></input></label>
         <br />
         <br />
         <label>Phone Number: <PhoneNumber /></label>
@@ -123,13 +131,13 @@ const Form = (props) => {
         <label>Credit Card #: <CreditCardNumber /></label>
         <br />
         <br />
-        <label>Expiration date: <input name="expiration_date" placeholder="04/28..."></input></label>
+        <label>Expiration date: <input name="expiration_date" placeholder="04/28..." required></input></label>
         <br />
         <br />
-        <label>CVV: <input name="cvv" placeholder="123..."></input></label>
+        <label>CVV: <input name="cvv" placeholder="123..." required></input></label>
         <br />
         <br />
-        <label>Billing ZIP code: <input name="billing_zip" placeholder="90210..."></input></label>
+        <label>Billing ZIP code: <input name="billing_zip" placeholder="90210..." required></input></label>
 
         <button type="reset">Reset form</button>
         <button type="submit">Submit</button>
