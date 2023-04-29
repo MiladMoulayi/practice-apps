@@ -5,3 +5,5 @@
 config.js
 node_modules/
 requests.rest
+.vscode
+*.session.sql

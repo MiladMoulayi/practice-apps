@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import PhoneNumber from './PhoneNumber.jsx';
+import CreditCardNumber from './CreditCardNumber.jsx';
 
 const Form = (props) => {
 
@@ -119,7 +120,7 @@ const Form = (props) => {
 
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>Credit Card #: <input name="credit_card_num" placeholder="1234-5678-9012-3456..."></input></label>
+        <label>Credit Card #: <CreditCardNumber /></label>
         <br />
         <br />
         <label>Expiration date: <input name="expiration_date" placeholder="04/28..."></input></label>
