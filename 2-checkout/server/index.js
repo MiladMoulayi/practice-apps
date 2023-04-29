@@ -44,7 +44,7 @@ app.post('/users/', (req, res) => {
 
   db.query(q, values, (err, results) => {
     if (err) {
-      console.error("Error posting data!");
+      console.error("Error posting data!", err);
       return;
     }
     res.json(req.body);

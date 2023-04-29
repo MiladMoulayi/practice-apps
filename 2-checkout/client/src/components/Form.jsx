@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import PhoneNumber from './PhoneNumber.jsx';
 
 const Form = (props) => {
 
@@ -107,7 +108,7 @@ const Form = (props) => {
         <label>ZIP Code: <input name="zip_code" placeholder="90210..."></input></label>
         <br />
         <br />
-        <label>Phone Number: <input name="phone_number" placeholder="555-424-3636..."></input></label>
+        <label>Phone Number: <PhoneNumber /></label>
 
         <button type="reset">Reset form</button>
         <button type="submit">Next</button>
