@@ -30,8 +30,9 @@ app.get('/checkout', (req, res) => {
   res.json({sessionId})
 })
 
-app.post('/users/form1', (req, res) => {
-  const q = `INSERT INTO users (first_name, last_name, email, password) VALUES ("${req.body.first_name}", "${req.body.last_name}", "${req.body.email}", "${req.body.password}");`
+app.post('/users/', (req, res) => {
+  console.log('request.body: ', req.body);
+  const q = `INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?);`
 
   db.query(q, (err, results) => {
     if (err) {
