@@ -14,8 +14,17 @@ CREATE TABLE IF NOT EXISTS users (
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL
-
+  password VARCHAR(255) NOT NULL,
+  address_line_one VARCHAR(255) NOT NULL,
+  address_line_two VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  state VARCHAR(255) NOT NULL,
+  zip_code VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(255) NOT NULL,
+  credit_card_num VARCHAR(255) NOT NULL,
+  expiration_date VARCHAR(255) NOT NULL,
+  cvv VARCHAR(255) NOT NULL,
+  billing_zip VARCHAR(255) NOT NULL
 )
 
 

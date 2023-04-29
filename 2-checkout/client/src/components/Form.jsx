@@ -1,7 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 
-const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3, setFormState3 }) => {
+const Form = (props) => {
+
+  const { formState1,
+    setFormState1,
+    formState2,
+    setFormState2,
+    formState3,
+    setFormState3,
+    formState4,
+    setFormState4 } = props
+
   const [user, setUser] = useState({});
 
   const handleSubmit = (e) => {
@@ -32,16 +42,37 @@ const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3
       setFormState3(!formState3);
     } else if (formState3) {
       setFormState3(!formState3);
-      console.log("Now to do something with all of this information...")
+      setFormState4(!formState4);
+    } else if (formState4) {
+      setFormState4(!formState4);
+      handleFinal();
     }
 
+  }
 
+  const handleFinal = (e) => {
 
+    fetch('/users/', {
+      method: form.method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user)
+     });
+
+  }
+
+  const userLoop = () => {
+    let res = [];
+    for (let key in user) {
+      res.push(<div key={key}>{key}: {user[key]}</div>)
+    }
+    return res;
   }
 
   if (formState1) {
     return (
-      <form id="form" method="post" onSubmit={handleSubmit}>
+      <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
         <label>First Name: <input name="first_name" placeholder="John..."></input></label>
         <br />
         <br />
@@ -60,11 +91,11 @@ const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3
     )
   } else if (formState2) {
     return (
-      <form id="form" method="post" onSubmit={handleSubmit}>
+      <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
         <label>Address Line 1: <input name="address_line_one" placeholder="123 Main St..."></input></label>
         <br />
         <br />
-        <label>Address Line 2: <input name="address_line_one" placeholder="Apt. #1..."></input></label>
+        <label>Address Line 2: <input name="address_line_two" placeholder="Apt. #1..."></input></label>
         <br />
         <br />
         <label>City: <input name="city" placeholder="Los Angeles..."></input></label>
@@ -86,7 +117,7 @@ const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3
     // F3 collects credit card #, expiry date, CVV, and billing zip code.
 
     return (
-      <form id="form" method="post" onSubmit={handleSubmit}>
+      <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
         <label>Credit Card #: <input name="credit_card_num" placeholder="1234-5678-9012-3456..."></input></label>
         <br />
         <br />
@@ -102,9 +133,18 @@ const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3
         <button type="submit">Submit</button>
       </form>
     )
-  }
+  } else if (formState4) {
+    // F3 collects credit card #, expiry date, CVV, and billing zip code.
 
-  else {
+    return (
+      <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
+        <div className="confirmation" key={JSON.stringify(document.cookie)}>
+          {userLoop()}
+        </div>
+        <button type="submit">Confirm</button>
+      </form>
+    )
+  } else {
     return (
       "No form right now"
     )
@@ -115,17 +155,9 @@ const Form = ({ formState1, setFormState1, formState2, setFormState2, formState3
 
 export default Form;
 
-
-// const form = e.target;
-// const formData = new FormData(form);
-// console.log("formData: ", formData.entries())
-// const formJson = Object.fromEntries(formData.entries());
-// console.log(formJson);
-
-// fetch('/users/form1', {
-//   method: form.method,
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify(formJson),
-// });
+// <div className="header">
+// <p>Hello, World!</p>
+// <p>
+//   <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
+// </p>
+// </div>
