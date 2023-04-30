@@ -32,15 +32,15 @@ app.get('/checkout', (req, res) => {
 
 app.post('/users/', (req, res) => {
 
-  const values = [req.body.first_name, req.body.last_name, req.body.email, req.body.password,
+  const values = [req.body.session_id, req.body.first_name, req.body.last_name, req.body.email, req.body.password,
     req.body.address_line_one, req.body.address_line_two, req.body.city, req.body.state,
     req.body.zip_code, req.body.phone_number, req.body.credit_card_num,
     req.body.expiration_date, req.body.cvv, req.body.billing_zip]
 
-  const q = `INSERT INTO users (first_name, last_name, email, password,
+  const q = `INSERT INTO users (session_id, first_name, last_name, email, password,
              address_line_one, address_line_two, city, state, zip_code, phone_number,
              credit_card_num, expiration_date, cvv, billing_zip)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
 
   db.query(q, values, (err, results) => {
     if (err) {
