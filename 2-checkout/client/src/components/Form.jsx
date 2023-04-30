@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import PhoneNumber from './PhoneNumber.jsx';
 import CreditCardNumber from './CreditCardNumber.jsx';
+import States from './States.jsx';
 
 const Form = (props) => {
 
@@ -14,7 +15,7 @@ const Form = (props) => {
     formState4,
     setFormState4 } = props
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({session_id: JSON.stringify(document.cookie)});
 
   const handleSubmit = (e) => {
 
@@ -25,7 +26,6 @@ const Form = (props) => {
     const formJson = Object.fromEntries(formData.entries());
 
     console.log('user before: ', user)
-
     for (let key in formJson) {
       setUser((prevState) => ({
         ...prevState,
@@ -83,16 +83,22 @@ const Form = (props) => {
   if (formState1) {
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>First Name: <input name="first_name" placeholder="John..." required></input></label>
+        <label>First Name: <input name="first_name" maxLength={30} required></input></label>
         <br />
         <br />
-        <label>Last Name: <input name="last_name" placeholder="Wick..." required></input></label>
+        <label>Last Name: <input name="last_name" maxLength={30} required></input></label>
         <br />
         <br />
-        <label>Email: <input name="email" placeholder="bulletTime@node.js..." required></input></label>
+        <label>Email: <input type="email" name="email" maxLength={30} required></input></label>
         <br />
         <br />
-        <label>Password: <input type="password" name="password" required></input></label>
+        <label>Password (must be at least 8 characters): <input type="password" name="password" minLength={8} maxLength={30} required></input></label>
+        <br />
+        <br />
+        <label>date: <input type="month" name="date"></input></label>
+        <br />
+        <br />
+        <label>hidden: <input type="hidden" id="custId" name="custId" value="3487"/></label>
 
         <button type="reset">Reset form</button>
         <button type="submit">Next</button>
@@ -102,19 +108,18 @@ const Form = (props) => {
   } else if (formState2) {
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>Address Line 1: <input name="address_line_one" placeholder="123 Main St..." required></input></label>
+        <label>Address Line 1: <input name="address_line_one" maxLength={50} required></input></label>
         <br />
         <br />
-        <label>Address Line 2: <input name="address_line_two" placeholder="Apt. #1..."></input></label>
+        <label>Address Line 2: <input name="address_line_two" maxLength={50}></input></label>
         <br />
         <br />
-        <label>City: <input name="city" placeholder="Los Angeles..." required></input></label>
+        <label>City: <input name="city" maxLength={20} required></input></label>
         <br />
         <br />
-        <label>State: <input name="state" placeholder="CA..." required></input></label>
+        <States />
         <br />
-        <br />
-        <label>ZIP Code: <input name="zip_code" placeholder="90210..." required></input></label>
+        <label>ZIP Code: <input name="zip_code" maxLength={5} required></input></label>
         <br />
         <br />
         <label>Phone Number: <PhoneNumber /></label>
@@ -128,16 +133,13 @@ const Form = (props) => {
 
     return (
       <form id="form" key={JSON.stringify(document.cookie)} method="post" onSubmit={handleSubmit}>
-        <label>Credit Card #: <CreditCardNumber /></label>
+        <CreditCardNumber />
         <br />
         <br />
-        <label>Expiration date: <input name="expiration_date" placeholder="04/28..." required></input></label>
+        <label>CVV: <input type="password" name="cvv" maxLength={3} required></input></label>
         <br />
         <br />
-        <label>CVV: <input name="cvv" placeholder="123..." required></input></label>
-        <br />
-        <br />
-        <label>Billing ZIP code: <input name="billing_zip" placeholder="90210..." required></input></label>
+        <label>Billing ZIP code: <input name="billing_zip" maxLength={5} required></input></label>
 
         <button type="reset">Reset form</button>
         <button type="submit">Submit</button>
@@ -165,9 +167,9 @@ const Form = (props) => {
 
 export default Form;
 
-// <div className="header">
-// <p>Hello, World!</p>
-// <p>
-//   <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
-// </p>
-// </div>
+{/* <div className="header">
+<p>Hello, World!</p>
+<p>
+  <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
+</p>
+</div> */}
